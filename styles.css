@@ -1,0 +1,26 @@
+body{
+    background-color: rgb(235, 235, 235);
+}
+h1{
+    text-align: center;
+}
+.buttons{
+    display: grid;
+    padding: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+.gameboard{
+    justify-content: center;
+    display: grid;
+    grid-template-columns:repeat(3,200px);
+    grid-template-rows: repeat(3,200px);
+}
+.gameboard>div{
+}
+.top{
+    border-top: 2px solid;
+}
+.left{
+    border-left: 2px solid;
+}
