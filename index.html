@@ -8,15 +8,26 @@
 </head>
 <body>
     <h1>Tic-Tac-Toe</h1>
-    <div class="buttons">
+    <form action="">
         <div>Player 1</div>
         <div>Player 2</div>
-        <button id="human1">Human</button>
-        <button id="human2">Human</button>
-        <button id="bot1">Bot</button>
-        <button id="bot2">Bot</button>
-    </div>
-    <div class="start"><button>Start Game</button></div>
+        <div class="radio">
+            <input type="radio" id="p1human" name="player1" class="p1" value="1" checked>
+            <label for="p1human">Human</label>
+            <br>
+            <input type="radio" id="p1bot" name="player1" class="p1" value="2">
+            <label for="p1bot">Bot</label>
+        </div>
+        <div class="radio">
+            <input type="radio" id="p2human" name="player2" class="p2" value="1" checked>
+            <label for="p2human">Human</label>
+            <br>
+            <input type="radio" id="p2bot" name="player2" class="p2" value="2">
+            <label for="p2bot">Bot</label>
+        </div>
+
+        <button type="button" class="start">Start</button>
+    </form>
     <div class="gameboard">
         <div id="1"></div>
         <div class="left" id="2">x</div>
