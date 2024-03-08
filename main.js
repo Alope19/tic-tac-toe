@@ -1,11 +1,8 @@
 
 const GAMEBOARD = {
     gameboard: [0,0,0,0,0,0,0,0,0],
-    WinningCombos: [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]],
-    checkValid:(div)=>{
-        //TODO check if space is available in gameboard
+    WinningCombos: [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]],
 
-    }
 }
 
 
@@ -41,12 +38,17 @@ const GAME ={
         board = document.querySelectorAll('.gameboard>div')
         board.forEach(div => {
             div.addEventListener('click',()=>{
-                if(GAMEBOARD.checkValid(div)){
+                if(GAMEBOARD.gameboard[div.id] == 0){
                     if(turn%2 == 0){
                         div.innerText= Players.p1.sign
+                        GAMEBOARD.gameboard[div.id] = Players.p1.sign
+                        GAME.checkWinner(Players.p1.sign)
+                        ++turn
                     }
                     else{
                         div.innerText = Players.p2.sign
+                        GAMEBOARD.gameboard[div.id] = Players.p2.sign
+                        GAME.checkWinner(Players.p2.sign)
                         ++turn
                     }
                 }
@@ -54,6 +56,17 @@ const GAME ={
             
         });
 
+    },
+    checkWinner:(sign)=>{
+        for(let i = 0;i<GAMEBOARD.WinningCombos.length;i++){
+            let combo = GAMEBOARD.WinningCombos[i]
+            if(GAMEBOARD.gameboard[combo[0]] == sign &&
+                GAMEBOARD.gameboard[combo[1]] == sign &&
+                GAMEBOARD.gameboard[combo[2]] == sign){
+                    console.log('winner')
+
+            }
+        }
     }
 }
 GAME.start()
