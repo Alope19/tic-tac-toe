@@ -20,6 +20,7 @@ const Players= {
 const GAME ={
 
     player1Turn: true,
+    gameOver: false,
 
     start:()=>{
         GAME.reset()
@@ -43,17 +44,19 @@ const GAME ={
         GAMEBOARD.board.forEach(div => {
             div.addEventListener('click',()=>{
                 if(GAMEBOARD.gameboard[div.id] == 0){
-                    if(GAME.player1Turn == true){
+
+                    if(GAME.player1Turn == true && GAME.gameOver == false){
                         div.innerText= Players.p1.sign
                         GAMEBOARD.gameboard[div.id] = Players.p1.sign
+                        GAME.checkWinner()
                         GAME.player1Turn = false
                     }
-                    else{
+                    else if(GAME.player1Turn == false && GAME.gameOver == false){
                         div.innerText = Players.p2.sign
                         GAMEBOARD.gameboard[div.id] = Players.p2.sign
+                        GAME.checkWinner()
                         GAME.player1Turn = true
                     }
-                    GAME.checkWinner()
                 }
             })
             
@@ -77,11 +80,13 @@ const GAME ={
                 GAMEBOARD.gameboard[combo[2]] == sign){
                     if(sign == 'x'){
                         winnerDiv.innerText = 'Player 1 is the winner'
-                        GAME.stop()
+                        GAME.gameOver = true
+
                     }
                     else if(sign == 'o'){
                         winnerDiv.innerText = 'Player 2 is the Winner'
-                        GAME.stop()
+                        GAME.gameOver = true
+
                     }
                     
 
@@ -91,13 +96,6 @@ const GAME ={
     reset:()=>{
         
     },
-    stop:()=>{
-        GAMEBOARD.board.forEach(div=>{
-            div.removeEventListener('click',)
-
-        })
-
-    }
 
 }
 GAME.start()
