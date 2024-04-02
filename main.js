@@ -21,11 +21,12 @@ const GAME ={
 
     player1Turn: true,
     gameOver: false,
+    turn: 0,
 
     start:()=>{
-        GAME.reset()
         let start = document.querySelector('.start')
         start.addEventListener('click',()=>{
+            GAME.reset()
             let p1 = document.querySelectorAll('.p1')
             let p2 = document.querySelectorAll('.p2')
 
@@ -65,13 +66,16 @@ const GAME ={
     },
     checkWinner:()=>{
         let sign
+        
         if(GAME.player1Turn == true){
             sign = Players.p1.sign
         }
         else{
             sign = Players.p2.sign
         }
+
         winnerDiv = document.querySelector('.winner')
+
 
         for(let i = 0;i<GAMEBOARD.WinningCombos.length;i++){
             let combo = GAMEBOARD.WinningCombos[i]
@@ -92,9 +96,25 @@ const GAME ={
 
             }
         }
-    },
-    reset:()=>{
+        GAME.turn++
+        if(GAME.turn == 9){
+            winnerDiv.innerText = 'Its a Tie'
+        }
         
+    }
+    ,
+    reset:()=>{
+
+        GAME.player1Turn = true
+        GAME.gameOver = false
+        GAME.turn = 0
+        GAMEBOARD.gameboard = [0,0,0,0,0,0,0,0,0]
+
+        GAMEBOARD.board.forEach(div=>{
+            div.innerText = ''
+        })
+        document.querySelector('.winner').innerText = ''
+
     },
 
 }
