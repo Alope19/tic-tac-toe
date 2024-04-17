@@ -9,9 +9,9 @@ const GAMEBOARD = {
 
 const Players= {
     CreatePlayer:(player,sign)=>{
-        let human = player[0].checked
         
-        return{human,sign,player}
+        
+        return{sign,player}
     },
 
 }
@@ -62,6 +62,7 @@ const GAME ={
             })
             
         });
+
 
     },
     checkWinner:()=>{
